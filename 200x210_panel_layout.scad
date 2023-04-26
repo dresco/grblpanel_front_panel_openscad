@@ -9,6 +9,7 @@ panel_x            = 200;
 panel_y            = 210;
 panel_mount_dia    = 3.2;
 panel_mount_offset = 6;
+panel_corner_r     = 4;
 
 // centre of the tactile switch array
 keypad_offset_x  = 100;
@@ -20,8 +21,9 @@ keypad_mount_x = 182;
 keypad_mount_y = 92;
 
 // tactile switch details
-key_hole_x = 10.3;
-key_hole_y = 10.3;
+key_hole_x    = 10.3;
+key_hole_y    = 10.3;
+key_hole_r    = 0.5;
 key_spacing_x = 16;
 key_spacing_y = 14;
 key_num_x     = 10;
@@ -73,8 +75,20 @@ extrude_thickness = 2;
 // MODULES
 // ----------------------------------------
 
+module rounded_square(size, r, center) {
+  s = is_list(size) ? size : [size,size];
+  translate(center ? -s/2 : [0,0]) {
+    hull() {
+        translate([     r,     r]) circle(r, $fn=64);
+        translate([     r,s[1]-r]) circle(r, $fn=64);
+        translate([s[0]-r,     r]) circle(r, $fn=64);
+        translate([s[0]-r,s[1]-r]) circle(r, $fn=64);
+    }
+  }
+}
+
 module panel() {
-    square(size=[panel_x,panel_y],center = false);
+    rounded_square(size=[panel_x,panel_y], r = panel_corner_r, center = false);
 }
 
 module panel_mounting_holes() {
@@ -95,7 +109,7 @@ module panel_mounting_holes() {
 }
 
 module keyhole() {
-  square(size=[key_hole_x,key_hole_y], center = true);
+  rounded_square(size=[key_hole_x,key_hole_y], r = key_hole_r, center = true);
 }
 
 module keyholes() {
