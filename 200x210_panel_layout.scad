@@ -53,20 +53,16 @@ override_encoder_num_y     = 1;
 mpg_encoder_offset_x  = 150;
 mpg_encoder_offset_y  = 171;
 
+// lcd display - new bezel design
+
 // centre of the lcd display
 display_offset_x  = 60;
 display_offset_y  = 171;
 
-// lcd display - initally for MSP3520 board
-
 // rectangular cutout
-display_x   = 87;
-display_y   = 57;
-
-// mounting hole size & spacing
-display_mount_dia = 3.2;
-display_mount_x = 92;
-display_mount_y = 49.5;
+display_x   = 88.5;
+display_y   = 59.5;
+display_r   = 0.5;
 
 // panel extrude thickness
 extrude_thickness = 2;
@@ -162,25 +158,7 @@ module mpg_encoder() {
 }
 
 module display() {
-    square(size=[display_x,display_y],center = true);
-
-  // mounting holes
-  translate([-display_mount_x/2, -display_mount_y/2, 0]) {
-    through_hole(display_mount_dia);
-  }
-  translate([-display_mount_x/2, display_mount_y/2, 0]) {
-    through_hole(display_mount_dia);
-  }
-  translate([-display_mount_x/2, -display_mount_y/2, 0]) {
-    through_hole(display_mount_dia);
-  }
-  translate([display_mount_x/2, -display_mount_y/2, 0]) {
-    through_hole(display_mount_dia);
-  }
-  translate([display_mount_x/2, display_mount_y/2, 0]) {
-    through_hole(display_mount_dia);
-  }
-
+    rounded_square(size=[display_x,display_y], r = display_r, center = true);
 }
 
 module through_hole(diameter) {
