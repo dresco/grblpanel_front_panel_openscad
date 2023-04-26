@@ -29,6 +29,17 @@ key_spacing_y = 14;
 key_num_x     = 10;
 key_num_y     = 6;
 
+// Define which key holes in the x/y grid actually get made.
+// Note that the size of this array must match the number
+// of rows and columns defined above..
+key_array = [[0,1,0,1,1,0,1,1,1,0],
+             [1,0,1,0,0,0,1,1,1,1],
+             [0,1,0,1,1,0,0,0,0,0],
+             [0,0,0,0,0,0,1,1,1,1],
+             [1,1,1,1,0,0,0,0,0,0],
+             [1,1,1,1,0,0,1,1,1,1],
+            ];
+
 // centre of the leftmost panel mount button
 button_offset_x  = 25;
 button_offset_y  = 21;
@@ -114,12 +125,14 @@ module keyholes() {
   keypad_overall_x  = (key_spacing_x*(key_num_x-1));
   keypad_overall_y  = (key_spacing_y*(key_num_y-1));
 
-  translate([-keypad_overall_x/2, -keypad_overall_y/2, 0]) {
+  translate([-keypad_overall_x/2, keypad_overall_y/2, 0]) {
   for (key_pos_x=[0:key_num_x-1])
     for (key_pos_y=[0:key_num_y-1])
-      translate([key_spacing_x*key_pos_x, key_spacing_y*key_pos_y, 0]) {
+    if (key_array[key_pos_y][key_pos_x]) {
+      translate([key_spacing_x*key_pos_x, -key_spacing_y*key_pos_y, 0]) {
         keyhole();
       }
+    }
   }
 
   // mounting holes
