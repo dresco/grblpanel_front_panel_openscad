@@ -35,14 +35,14 @@ key_num_y     = 6;
 key_array = [[0,1,0,1,1,0,1,1,1,0],
              [1,0,1,0,0,0,1,1,1,1],
              [0,1,0,1,1,0,0,0,0,0],
-             [0,0,0,0,0,0,1,1,1,1],
-             [1,1,1,1,0,0,0,0,0,0],
-             [1,1,1,1,0,0,1,1,1,1],
+             [0,0,0,0,0,0,1,1,1,0],
+             [1,1,1,1,1,0,0,0,0,0],
+             [1,1,1,1,1,0,1,1,1,1],
             ];
 
 // centre of the leftmost panel mount button
-button_offset_x  = 25;
-button_offset_y  = 21;
+button_offset_x  = 30;
+button_offset_y  = 19;
 
 panel_mount_button_dia       = 16.2;
 panel_mount_button_spacing_x = 30;
@@ -51,8 +51,8 @@ panel_mount_button_num_x     = 3;
 panel_mount_button_num_y     = 1;
 
 // centre of the leftmost ovveride encoder
-override_encoder_offset_x  = 115;
-override_encoder_offset_y  = 21;
+override_encoder_offset_x  = 118;
+override_encoder_offset_y  = 19;
 
 override_encoder_dia       = 7.2;
 override_encoder_spacing_x = 30;
@@ -61,7 +61,7 @@ override_encoder_num_x     = 3;
 override_encoder_num_y     = 1;
 
 // centre of the mpg encoder
-mpg_encoder_offset_x  = 150;
+mpg_encoder_offset_x  = 148;
 mpg_encoder_offset_y  = 171;
 
 // lcd display - new bezel design
